@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de mi pagina WEb</title>
+    <style>
+        /* Estilos para la página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Animaciones para cada pregunta para que se ve elegante */
+        .question {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Retraso de animación para cada pregunta */
+        .question:nth-child(1) { animation-delay: 0s; }
+        .question:nth-child(2) { animation-delay: 0.5s; }
+        .question:nth-child(3) { animation-delay: 1s; }
+        .question:nth-child(4) { animation-delay: 1.5s; }
+
+        /* Animación de aparición */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Encuesta de Satisfacción</h1>
+        <form id="surveyForm">
+            <!-- Pregunta 1: Nombre -->
+            <div class="question">
+                <label for="nombre">1. ¿Cuál es tu nombre?</label><br>
+                <input type="text" id="nombre" name="nombre" required><br><br>
+            </div>
+
+            <!-- Pregunta 2: Calificación de la página (1 al 10) -->
+            <div class="question">
+                <label for="calificacion">2. ¿Qué te pareció mi página web? (1 - 10)</label><br>
+                <input type="number" id="calificacion" name="calificacion" min="1" max="10" required><br><br>
+            </div>
+
+            <!-- Pregunta 3: Ideas para mejorar -->
+            <div class="question">
+                <label for="ideas">3. Dame ideas para mejorar mi página web:</label><br>
+                <textarea id="ideas" name="ideas" rows="4" cols="50" required></textarea><br><br>
+            </div>
+
+            <!-- Pregunta 4: Nota (1 al 10) -->
+            <div class="question">
+                <label for="nota">4. ¿Qué nota le das a la página? (1 - 10)</label><br>
+                <input type="number" id="nota" name="nota" min="1" max="10" required><br><br>
+            </div>
+
+            <button type="button" onclick="enviarDatos()">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        function enviarDatos() {
+            // Capturar los valores del formulario
+            const nombre = document.getElementById("nombre").value;
+            const calificacion = document.getElementById("calificacion").value;
+            const ideas = document.getElementById("ideas").value;
+            const nota = document.getElementById("nota").value;
+
+            // Crear objeto con los datos
+            const datos = {
+                nombre: nombre,
+                calificacion: calificacion,
+                ideas: ideas,
+                nota: nota
+            };
+
+            // Enviar los datos a Google Apps Script
+            fetch("https://script.google.com/macros/s/AKfycbxrLE2ov8eUphHjVEh0uRDIrfQqCoSCK8tGfjtXFzi--vCJUyMsOl4didcF5MXTVuMyaw/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(datos)
+            }).then(() => {
+                alert("Encuesta enviada con éxito. ¡Gracias por tu participación!");
+                document.getElementById("surveyForm").reset();
+            }).catch(error => {
+                console.error("Error:", error);
+                alert("Hubo un problema al enviar la encuesta. Inténtalo de nuevo.");
+            });
+        }
+    </script>
+</body>
+</html>
+
