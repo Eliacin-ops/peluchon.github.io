@@ -1,0 +1,27 @@
+body {
+    font-family: serif, sans-serif;
+    margin:0;
+    padding: 0;
+    background-color: #82E0AA;
+} 
+.margen {
+          border: solid 2px blue;         
+          width: 80%;         
+          margin: 0 auto;
+          padding: 5px; 
+}
+.margen fieldset{
+        margin-botton: 10px;
+} 
+.margen legend{
+        border: solid 1px blue;
+        padding: 3px;
+        font-weight: bold;
+        border-radius: 30px;
+        background: ligthgray;
+    }
+
+.margen {
+        margin: 5px;
+        border: solid 4px black;
+    }

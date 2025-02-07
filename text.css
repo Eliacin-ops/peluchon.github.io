@@ -1,0 +1,55 @@
+.text ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.text ul l1 {
+    background-color:#2E518B ;
+}
+
+.text ul a {
+    display: block;
+    color:  #001F80 ;
+    text-decoration:none;
+    font-weight:400 ;
+    font-size: 15px;
+    padding: 10px;
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.text ul li {
+    position:relative;
+    float:down;
+    margin:0;
+    padding:0 ;
+}
+
+.text ul l1:hover {
+    background:#5B78A7 ;
+}
+
+.text ul ul {
+    display:none ;
+    position:absolute ;
+    top: 100%;
+    left: 0;
+    background:#EEE000 ;
+    padding: 0;
+}
+
+.text ul ul l1{
+    float:none;
+    width:150px;
+}
+
+.text ul ul a{
+    line-height: 120%;
+    padding:10px 15px ;
+}
+
+.text ul li:hover > ul{
+    display:block;
+}
